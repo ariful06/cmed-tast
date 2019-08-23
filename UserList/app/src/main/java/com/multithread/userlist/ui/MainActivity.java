@@ -10,6 +10,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.multithread.userlist.R;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements UserAdapter.OnIte
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+    @BindView(R.id.progress_circular)
+    ProgressBar progressBar;
 
     MainActicityViewModel viewModel;
     List<User> userList;
@@ -39,8 +43,10 @@ public class MainActivity extends AppCompatActivity implements UserAdapter.OnIte
         ButterKnife.bind(this);
 
         viewModel = ViewModelProviders.of(this).get(MainActicityViewModel.class);
+
         if (isNetworkAvailable()) {
             if (isOnline()) {
+                progressBar.setIndeterminate(true);
                 getUserList();
             }
         }
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements UserAdapter.OnIte
         viewModel.getAllUsers().observe(this, users -> {
             userList = users.getUsers();
             prepareRecyclerView(userList);
+            progressBar.setVisibility(View.GONE);
         });
     }
 
@@ -60,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements UserAdapter.OnIte
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+        recyclerView.setVisibility(View.VISIBLE);
         adapter.notifyDataSetChanged();
     }
 
