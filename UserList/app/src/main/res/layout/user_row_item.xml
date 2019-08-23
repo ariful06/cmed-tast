@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_2dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/profile_image"
+            android:layout_toRightOf="@+id/profile_image"
+            android:padding="@dimen/padding_8dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textAppearance="?android:textAppearanceMedium"/>
+
+
+        <TextView
+            android:id="@+id/user_mobile_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_name"
+            android:layout_toRightOf="@+id/profile_image"
+            android:drawableLeft="@drawable/ic_phone"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding_8dp"
+            android:drawablePadding="@dimen/padding_8dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_margin="@dimen/margin_8dp" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
